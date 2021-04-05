@@ -14,7 +14,7 @@ class HomeCtrl extends Controller {
     this.setLang('en');
 
     await this.loadView('#primary', 'pages/home/primary.html', 'sibling');
-    this.loadViews([
+    await this.loadViews([
       ['#main', 'pages/home/main.html'],
       ['#img', 'pages/home/img.html'],
     ], true);

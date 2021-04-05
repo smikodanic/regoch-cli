@@ -32,10 +32,11 @@ module.exports = async (appName) => {
       'scripts': {
         'inst': 'rm -rf node_modules && npm install',
         'dev': 'gulp default',
-        'build': 'npm install && gulp build && rm -rf node_modules && npm install --only=production'
+        'build': 'gulp build',
+        'prod': 'rm -rf node_modules && npm install --only=production && pm2 start server --name regoch-spa'
       },
       'dependencies': {
-        'regoch-spa': '^1.0.4'
+        'regoch-spa': '^1.0.5'
       },
       'devDependencies': {
         'browserify': '^17.0.0',
@@ -62,7 +63,7 @@ module.exports = async (appName) => {
 
     // ending message
     const tf = await fse.pathExists(destDir);
-    if (tf) { console.log(`Task "${appName}" initialized and folder is created.\nModify package.json, README.md, LICENSE and the app files.`); }
+    if (tf) { console.log(`Task "${appName}" initialized and folder is created. Modify package.json, README.md, LICENSE and the app files.`); }
 
   } catch (err) {
     console.error(err);
