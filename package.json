@@ -1,0 +1,36 @@
+{
+  "name": "regoch-cli",
+  "version": "1.0.0",
+  "title": "Regoch CLI",
+  "description": "Regoch CLI is the command line interface with tools and libraries for the Regoch Project.",
+  "author": "Sasa Mikodanic <smikodanic@gmail.com>",
+  "homepage": "http://www.regoch.org/cli",
+  "license": "AGPL-3.0",
+  "keywords": [
+    "regoch",
+    "rg",
+    "cli",
+    "regoch-cli"
+  ],
+  "main": "",
+  "scripts": {},
+  "bin": {
+    "rg": "./bin/index.js"
+  },
+  "dependencies": {
+    "commander": "^7.2.0",
+    "inquirer": "^8.0.0",
+    "fs-extra": "^9.1.0"
+  },
+  "devDependencies": {},
+  "directories": {
+    "bin": "./bin"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smikodanic/regoch-cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/smikodanic/regoch-cli/issues"
+  }
+}
