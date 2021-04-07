@@ -21,4 +21,4 @@ Install *gulp* globally: ```npm install -g gulp-cli```
 
 
 ### Licence
-Copyright (c) 2020 Saša Mikodanić licensed under [AGPL-3.0](./LICENSE) .
+Copyright (c) 2020 Saša Mikodanić licensed under [MIT](./LICENSE) .
