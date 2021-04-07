@@ -1,6 +1,6 @@
 {
   "name": "regoch-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "title": "Regoch CLI",
   "description": "Regoch CLI is the command line interface with tools and libraries for the Regoch Project.",
   "author": "Sasa Mikodanic <smikodanic@gmail.com>",
