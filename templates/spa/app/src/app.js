@@ -1,7 +1,9 @@
-const { App } = require('regoch-spa');
+const { App, syslib } = require('regoch-spa');
+const viewsCompiled = require('../dist/views/compiled.json');
+const routes = require('./routes');
 
 // conf
-const routesCnf = require('./conf/routesCnf');
+const { httpClientOpts } = require('./conf');
 
 // lib
 const StringExt = require('./lib/StringExt');
@@ -15,17 +17,18 @@ const NotfoundCtrl = require('./controllers/NotfoundCtrl');
 const app = new App();
 
 app
-  .const('myNum', 10)
+  .const('httpClientOpts', httpClientOpts)
   .freeze();
-
-app.libInject({StringExt});
-
+app
+  .libInject({ StringExt });
 app
   .controller([
     HomeCtrl,
     NotfoundCtrl
   ])
-  .routes(routesCnf).run();
+  .controllerViewsCompiled(viewsCompiled);
+app
+  .routes(routes).run();
 
 
 

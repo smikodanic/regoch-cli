@@ -31,12 +31,14 @@ module.exports = async (appName) => {
       'main': '',
       'scripts': {
         'inst': 'rm -rf node_modules && npm install',
+        'inst-win': 'remove-item node_modules -recurse -force && npm install',
         'dev': 'gulp default',
         'build': 'gulp build',
-        'prod': 'rm -rf node_modules && npm install --only=production && pm2 start server --name regoch-spa'
+        'deploy': `rm -rf node_modules && npm install --only=production && pm2 start server --name ${appName}`,
+        'deploy-win': `remove-item node_modules -recurse -force && npm install --only=production && pm2 start server --name ${appName}`
       },
       'dependencies': {
-        'regoch-spa': '^1.0.5'
+        'regoch-spa': '^1.1.0'
       },
       'devDependencies': {
         'browserify': '^17.0.0',

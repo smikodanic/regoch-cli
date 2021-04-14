@@ -11,12 +11,12 @@ Install *gulp* globally: ```npm install -g gulp-cli```
 
 
 ## Documentation
-[http://www.regoch.org/cli](http://www.regoch.org/cli)
+[http://www.regoch.org](http://www.regoch.org)
 
 
 ## Commands
 ### SPA Commands
-- commands for single page application (egoch-spa)
+- commands for single page application (*regoch-spa*)
 ```rg spa-new <appName>``` - create folder structure with the minimal single page application
 
 

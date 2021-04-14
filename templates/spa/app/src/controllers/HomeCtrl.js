@@ -1,10 +1,11 @@
-const { Controller } = require('regoch-spa');
+const { Controller, syslib } = require('regoch-spa');
 
 
 class HomeCtrl extends Controller {
 
   constructor(app) {
     super();
+    this.util = syslib.util;
   }
 
   async prerender(trx) {
