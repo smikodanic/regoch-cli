@@ -1,5 +1,6 @@
 {
-  "compile": {
+  "cache": {
+    "env": "development",
     "views": [
       "inc/header.html"
     ]

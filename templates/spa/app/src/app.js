@@ -1,5 +1,5 @@
 const { App, syslib } = require('regoch-spa');
-const viewsCompiled = require('../dist/views/compiled.json');
+const viewsCached = require('../cache/views.json');
 const routes = require('./routes');
 
 // conf
@@ -26,7 +26,7 @@ app
     HomeCtrl,
     NotfoundCtrl
   ])
-  .controllerViewsCompiled(viewsCompiled);
+  .controllerViewsCached(viewsCached);
 app
   .routes(routes).run();
 

@@ -7,7 +7,8 @@ const htmlMinify = require('./tasks/htmlMinify.js');
 // const browserify = require('./tasks/browserify.js');
 const browserifyMinifyMap = require('./tasks/browserifyMinifyMap.js');
 const scss = require('./tasks/scss.js');
-const compileViews = require('./tasks/compileViews.js');
+const cacheViews = require('./tasks/cacheViews.js');
+const cacheEnv = require('./tasks/cacheEnv.js');
 
 
 
@@ -19,13 +20,22 @@ task('rimraf', rimraf);
 task('htmlMinify', htmlMinify);
 task('browserifyMinifyMap', browserifyMinifyMap);
 task('scss', scss);
-task('compileViews', compileViews);
+task('cacheViews', cacheViews);
+task('cacheEnv', cacheEnv);
 
 
 /***** WATCHERS *****/
-task('watcher', async () => {
+task('watchers', async () => {
   await watch([
-    'app/src/app.js',
+    'app/src/**/*.html'
+  ], series('htmlMinify', 'cacheViews', 'browserifyMinifyMap'));
+
+  await watch([
+    'app/src/**/*.scss'
+  ], series('scss'));
+
+  await watch([
+    'app/src/*.js',
     'app/src/controllers/**/*.js',
     'app/src/conf/*.js',
     'app/src/lib/*.js',
@@ -34,16 +44,12 @@ task('watcher', async () => {
   ], series('browserifyMinifyMap'));
 
   await watch([
-    'app/src/**/*.html'
-  ], series('htmlMinify', 'compileViews', 'browserifyMinifyMap'));
-
-  await watch([
     'regoch.json'
-  ], series('compileViews', async () => { console.log('RESTART the GULP !!!'); }));
+  ], series('cacheViews','cacheEnv', 'browserifyMinifyMap', 'serverRestart'));
 
   await watch([
-    'app/src/**/*.scss'
-  ], series('scss'));
+    'env/*.js'
+  ], series('cacheEnv', 'browserifyMinifyMap'));
 
   await watch([
     'sys/HTTPServer.js',
@@ -54,7 +60,7 @@ task('watcher', async () => {
 
 /***** GULP COMPOUND TASKS *****/
 // first delete then create JS, HTML and CSS files in /app/dist/ directory
-task('build', series('rimraf', parallel('browserifyMinifyMap', 'htmlMinify', 'compileViews', 'scss')));
+task('build', series('rimraf', parallel('htmlMinify', 'scss', 'browserifyMinifyMap', 'cacheViews', 'cacheEnv')));
 
 // defult gulp task
-task('default', parallel('watcher', 'build', 'serverStart'));
+task('default', parallel('watchers', 'build', 'serverStart'));
