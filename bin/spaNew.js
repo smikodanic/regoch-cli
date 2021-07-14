@@ -38,7 +38,7 @@ module.exports = async (appName) => {
         'deploy-win': `remove-item node_modules -recurse -force && npm install --only=production && pm2 start server --name ${appName}`
       },
       'dependencies': {
-        'regoch-spa': '~1.2.1'
+        'regoch-spa': '~1.2.8'
       },
       'devDependencies': {
         'browserify': '^17.0.0',
